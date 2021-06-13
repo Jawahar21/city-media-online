@@ -1,5 +1,6 @@
 import * as commonConstants from "../constants";
 import { IAction } from "../interfaces/IAction";
+import { IDynamicObject } from "../interfaces/IDynamicObject";
 import { IGenre } from "../interfaces/IGenre";
 import * as constants from "./constants";
 
@@ -12,7 +13,9 @@ export const fetchGenresStarted = (): IAction => ({
   type: FETCH_GENRES_STARTED,
 });
 
-export const fetchGenresSucceeded = (genres: IGenre[]): IAction => ({
+export const fetchGenresSucceeded = (
+  genres: IDynamicObject<IGenre>
+): IAction => ({
   payload: genres,
   type: FETCH_GENRES_SUCCEEDED,
 });

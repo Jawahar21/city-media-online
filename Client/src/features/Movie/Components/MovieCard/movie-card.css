@@ -1,0 +1,15 @@
+.movie-card {
+  display: inline-block;
+  border: 1px solid black;
+  margin: 6rem 1rem;
+  height: 18rem;
+  width: 12rem;
+  cursor: pointer;
+  background-color: #ccd0cc;
+}
+
+.movie-card-image {
+  display: block;
+  height: 100%;
+  width: 100%;
+}

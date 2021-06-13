@@ -1,5 +1,6 @@
 import * as commonConstants from "../constants";
 import { IAction } from "../interfaces/IAction";
+import { IDynamicObject } from "../interfaces/IDynamicObject";
 import { IMovie } from "../interfaces/IMovie";
 import * as constants from "./constants";
 
@@ -12,7 +13,9 @@ export const fetchMoviesStarted = (): IAction => ({
   type: FETCH_MOVIES_STARTED,
 });
 
-export const fetchMoviesSucceeded = (movies: IMovie[]): IAction => ({
+export const fetchMoviesSucceeded = (
+  movies: IDynamicObject<IMovie>
+): IAction => ({
   payload: movies,
   type: FETCH_MOVIES_SUCCEEDED,
 });

@@ -1,27 +1,25 @@
 import * as React from "react";
-import { useCallback } from "react";
-import { useEffect } from "react";
-import { GenresView } from "../../Genre/Components/GenresView/GenreView";
-import { MoviesView } from "../../Movie/Components/MoviesView/MoviesView";
+import { useCallback, useEffect } from "react";
+import { GenresViewContainer } from "../../Genre/Components/GenresView/GenresViewContainer";
+import { MoviesViewContainer } from "../../Movie/Components/MoviesView/MoviesViewContainer";
+import "./layout.css";
 import { ILayoutProps } from "./types/ILayoutProps";
 
 export const Layout: React.NamedExoticComponent<ILayoutProps> = React.memo(
   (props: ILayoutProps) => {
-
     const fetchData = useCallback(() => {
       props.onFetchGenres();
-      props.onFetchMovies();
     }, [props]);
 
-    // dispatch action to fetch movies and genres
+    // dispatch action to fetch genres
     useEffect(() => {
       fetchData();
     }, [fetchData]);
 
     return (
-      <div>
-        <GenresView />
-        <MoviesView />
+      <div className="layout">
+        <GenresViewContainer />
+        <MoviesViewContainer />
       </div>
     );
   }

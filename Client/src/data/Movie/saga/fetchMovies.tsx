@@ -1,12 +1,34 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
+import { setSelectedGenre } from "../../../features/Genre/actions";
+import { CacheService } from "../../CacheService/CacheService";
+import { fetchGenresStarted } from "../../Genre/actions";
+import { IDynamicObject } from "../../interfaces/IDynamicObject";
 import { IMovie } from "../../interfaces/IMovie";
 import { fetchMoviesSucceeded } from "../actions";
-import * as helpers from "../helpers";
+import * as helpers from "../httpRequestHelpers";
+import { getMovies } from "../selectors";
 
-export function* fetchMovies() {
+export function* fetchMovies(action: ReturnType<typeof setSelectedGenre>) {
   try {
-    const movies: IMovie[] = yield call(helpers.fetchMovies);
-    yield put(fetchMoviesSucceeded(movies));
+    yield put(fetchGenresStarted());
+    if (!CacheService.CheckIfMoviesOfGenreAreFetched(action.payload)) {
+      const newMoviesResponse: IMovie[] = yield call(
+        helpers.fetchMovies,
+        action.payload
+      );
+      const newMovies: IDynamicObject<IMovie> = {};
+      newMoviesResponse.forEach((movie: IMovie) => {
+        newMovies[movie.id] = movie;
+      });
+      const currentMovies: IDynamicObject<IMovie> = yield select(getMovies);
+      const updatedMovies: IDynamicObject<IMovie> = Object.assign(
+        {},
+        currentMovies,
+        newMovies
+      );
+      yield put(fetchMoviesSucceeded(updatedMovies));
+      CacheService.AddGenreIDToFetchedList(action.payload);
+    }
   } catch (error) {
     console.log(error);
   }

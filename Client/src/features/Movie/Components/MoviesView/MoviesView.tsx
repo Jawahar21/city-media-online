@@ -1,5 +1,25 @@
 import * as React from "react";
+import { IMovie } from "../../../../data/interfaces/IMovie";
+import { MovieCard } from "../MovieCard/MovieCard";
+import { IMoviesViewProps } from "./types/IMoviesViewProps";
+import './movies-view.css';
+import { sortMoviesByRatingAndGenre } from "../../helpers";
 
-export const MoviesView: React.NamedExoticComponent = React.memo((props) => {
-  return <div> Movies View </div>;
-});
+export const MoviesView: React.NamedExoticComponent<IMoviesViewProps> =
+  React.memo((props: IMoviesViewProps) => {
+    const [movies, setMovies] = React.useState<IMovie[]>([]);
+
+    React.useEffect(() => {
+      setMovies(sortMoviesByRatingAndGenre(props.movies, props.selectedGenreID));
+    }, [props.movies, props.selectedGenreID]);
+
+    const movieCards = movies.map((movie: IMovie) => {
+      return (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+        />
+      );
+    });
+    return <div className="movies-view">{movieCards}</div>;
+  });

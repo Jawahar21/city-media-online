@@ -1,9 +1,9 @@
 import { all, takeEvery } from "redux-saga/effects";
-import * as actions from "../actions";
+import { SET_SELECTED_GENRE } from "../../../features/Genre/actions";
 import { fetchMovies } from "./fetchMovies";
 
 export function* saga() {
   yield all([
-      takeEvery(actions.FETCH_MOVIES_STARTED, fetchMovies)
+      takeEvery(SET_SELECTED_GENRE, fetchMovies)
     ]);
 }
