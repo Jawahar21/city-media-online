@@ -89,7 +89,7 @@ router.put("/movie/:id", (req, res) => {
 });
 
 router.put("/genre/:id", (req, res) => {
-    db.Genre.create({
+    db.Genre.update({
         name: req.body.name,
         imageURL: req.body.imageURL,
     },
