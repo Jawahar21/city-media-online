@@ -9,10 +9,10 @@ router.get("/movies", (req, res) => {
     db.Movie.findAll().then(movies => res.send(movies));
 });
 
-router.get("/movie/:id", (req, res) => {
+router.get("/movies/:genreID", (req, res) => {
     db.Movie.findAll({
         where: {
-            id: req.params.id
+            GenreId: req.params.genreID
         }
     })
     .then(movie => res.send(movie));
@@ -23,7 +23,7 @@ router.get("/genres", (req, res) => {
 });
 
 router.get("/genre/:id", (req, res) => {
-    db.Genre.findAll({
+    db.Genre.findOne({
         where: {
             id: req.params.id
         }
@@ -75,10 +75,10 @@ router.put("/movie/:id", (req, res) => {
     {
         where: { id: req.params.id}
     })
-    .then(async updatedMovieID => {
-        const updatedMovie = await db.Movie.findAll({
+    .then(async () => {
+        const updatedMovie = await db.Movie.findOne({
             where: {
-                id: updatedMovieID
+                id: req.params.id
             }
         });
         res.send(updatedMovie); 
@@ -96,10 +96,10 @@ router.put("/genre/:id", (req, res) => {
     {
         where: { id: req.params.id}
     })
-    .then(async updatedGenreID => {
-        const updatedGenre = await db.Genre.findAll({
+    .then(async () => {
+        const updatedGenre = await db.Genre.findOne({
             where: {
-                id: updatedGenreID
+                id: req.params.id
             }
         });
         res.send(updatedGenre); 

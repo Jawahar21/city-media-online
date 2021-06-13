@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         },
         rating: {
-            type: DataTypes.TINYINT
+            type: DataTypes.FLOAT
         },
         imageURL: {
             type: DataTypes.STRING
