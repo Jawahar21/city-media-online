@@ -41,7 +41,7 @@ router.post("/movie", (req, res) => {
         releaseYear: req.body.releaseYear,
         rating: req.body.rating,
         imageURL: req.body.imageURL,
-        GenreId: req.body.genreID
+        GenreId: req.body.GenreId
     })
     .then(addedMovie => res.send(addedMovie))
     .catch((error) => {
@@ -70,18 +70,18 @@ router.put("/movie/:id", (req, res) => {
         releaseYear: req.body.releaseYear,
         rating: req.body.rating,
         imageURL: req.body.imageURL,
-        GenreId: req.body.genreID
+        GenreId: req.body.GenreId
     },
     {
         where: { id: req.params.id}
     })
-    .then(async updatedGenreID => {
-        const updatedGenre = await db.Movie.findAll({
+    .then(async updatedMovieID => {
+        const updatedMovie = await db.Movie.findAll({
             where: {
-                id: updatedGenreID
+                id: updatedMovieID
             }
         });
-        res.send(updatedGenre); 
+        res.send(updatedMovie); 
     })
     .catch((error) => {
         res.send(error.message);
@@ -96,13 +96,13 @@ router.put("/genre/:id", (req, res) => {
     {
         where: { id: req.params.id}
     })
-    .then(async updatedMovieID => {
-        const updatedMovie = await db.Genre.findAll({
+    .then(async updatedGenreID => {
+        const updatedGenre = await db.Genre.findAll({
             where: {
-                id: updatedMovieID
+                id: updatedGenreID
             }
         });
-        res.send(updatedMovie); 
+        res.send(updatedGenre); 
     })
     .catch((error) => {
         res.send(error.message);
