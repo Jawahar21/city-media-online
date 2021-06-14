@@ -5,10 +5,16 @@ const db = require("../models");
 
 ////////////////////////////////////////// GET //////////////////////////////////////////
 
+/**
+ * API to get all movies
+ */
 router.get("/movies", (req, res) => {
     db.Movie.findAll().then(movies => res.send(movies));
 });
 
+/**
+ * API to get list of movies based on its genre ID
+ */
 router.get("/movies/:genreID", (req, res) => {
     db.Movie.findAll({
         where: {
@@ -18,10 +24,16 @@ router.get("/movies/:genreID", (req, res) => {
     .then(movie => res.send(movie));
 });
 
+/**
+ * API to get all genres
+ */
 router.get("/genres", (req, res) => {
     db.Genre.findAll().then(genres => res.send(genres));
 });
 
+/**
+ * API to get genre by its ID
+ */
 router.get("/genre/:id", (req, res) => {
     db.Genre.findOne({
         where: {
@@ -35,6 +47,9 @@ router.get("/genre/:id", (req, res) => {
 
 ////////////////////////////////////////// POST //////////////////////////////////////////
 
+/**
+ * API to post a movie
+ */
 router.post("/movie", (req, res) => {
     db.Movie.create({
         name: req.body.name,
@@ -49,6 +64,9 @@ router.post("/movie", (req, res) => {
     });
 });
 
+/**
+ * API to posr a genre
+ */
 router.post("/genre", (req, res) => {
     db.Genre.create({
         name: req.body.name,
@@ -64,6 +82,9 @@ router.post("/genre", (req, res) => {
 
 ///////////////////////////////////////// PUT ////////////////////////////////////////////////
 
+/**
+ * API to update movie
+ */
 router.put("/movie/:id", (req, res) => {
     db.Movie.update({
         name: req.body.name,
@@ -88,6 +109,9 @@ router.put("/movie/:id", (req, res) => {
     });
 });
 
+/**
+ * API to update genre
+ */
 router.put("/genre/:id", (req, res) => {
     db.Genre.update({
         name: req.body.name,
