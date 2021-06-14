@@ -22,7 +22,7 @@ export const GenresView: React.NamedExoticComponent<IGenresViewProps> =
         <GenreCard
           key={genre.id}
           genre={genre}
-          isSelected={true}
+          isSelected={genre.id === props.selectedGenreID}
           onClick={handleOnClickGenreCard}
         />
       );

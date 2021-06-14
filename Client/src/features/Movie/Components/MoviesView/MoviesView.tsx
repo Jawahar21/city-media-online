@@ -16,7 +16,7 @@ export const MoviesView: React.NamedExoticComponent<IMoviesViewProps> =
     const movieCards = movies.map((movie: IMovie) => {
       return (
         <MovieCard
-          key={movie.id}
+          key={Math.random()}
           movie={movie}
         />
       );

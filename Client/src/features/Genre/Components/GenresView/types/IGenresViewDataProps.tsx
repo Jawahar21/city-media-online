@@ -3,4 +3,5 @@ import { IGenre } from "../../../../../data/interfaces/IGenre";
 
 export interface IGenresViewDataProps {
   genres: IDynamicObject<IGenre>;
+  selectedGenreID: number;
 }
