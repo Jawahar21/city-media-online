@@ -28,3 +28,11 @@
   overflow: hidden;
   padding: 0.2rem;
 }
+
+.movie-card--isSelected {
+  border: 2px solid yellow;
+}
+
+.movie-card-title-text--isSelected {
+  color: yellow;
+}

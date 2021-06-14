@@ -4,4 +4,5 @@ import { IMovie } from "../../../../../data/interfaces/IMovie";
 export interface IMoviesViewDataProps {
   movies: IDynamicObject<IMovie>;
   selectedGenreID: number;
+  selectedMovieID: number;
 }

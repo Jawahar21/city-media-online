@@ -1,0 +1,28 @@
+.movie-info-box {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-info-content {
+  display: flex;
+  background: white;
+  border-radius: 2px;
+  padding: 1rem;
+  flex: 0 1 auto;
+  flex-direction: column;
+  min-width: 20rem;
+}
+
+.movie-info-content-header {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 1 auto;
+  align-items: center;
+  border-bottom: 1px solid;
+}
