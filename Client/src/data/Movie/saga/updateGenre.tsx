@@ -11,6 +11,10 @@ import {
 import * as helpers from "../httpRequestHelpers";
 import { getMovies } from "../selectors";
 
+/**
+ * This saga is to make an API call for updating the genre of a required movie
+ * @param action the action dispatched object which triggered the saga. Contains both movieID and genreID values.
+ */
 export function* updateGenre(action: ReturnType<typeof updateGenreStarted>) {
   const genres: IDynamicObject<IGenre> = yield select(getGenres);
   const currentMovies: IDynamicObject<IMovie> = yield select(getMovies);

@@ -4,6 +4,11 @@ import { IGenre } from "../../../../data/interfaces/IGenre";
 import "./movie-info.css";
 import { IMovieInfoProps } from "./types/IMovieInfoProps";
 
+/**
+ * This component opens a pop up screen in the middle of the page when a user selects a Movie.
+ * The pop up contains the info about the movie.
+ * Allows to update the genre of the movie from list of genres available.
+ */
 export const MovieInfo: React.NamedExoticComponent<IMovieInfoProps> =
   React.memo((props: IMovieInfoProps) => {
     const [isInEditMode, setMode] = useState<boolean>(false);
@@ -11,29 +16,36 @@ export const MovieInfo: React.NamedExoticComponent<IMovieInfoProps> =
       props.movie.GenreId
     );
 
+    // sets state with genre of the movie
     useEffect(() => {
       updateGenreID(props.movie.GenreId);
     }, [props.movie]);
 
+    // sets state for edit mode when user clicks on edit of genre
     const onEditGenreClick = () => {
       setMode(true);
     };
 
+    // clean ups and dispatches action to update the genre of movie on save.
     const onUpdateGenre = () => {
       setMode(false);
       props.onUpdateGenre(props.movie.id, selectedGenreID);
       props.onClose();
     };
 
+    // sets state when user changes the genre in the dropdown.
     const onGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       updateGenreID(Number(event.target.value));
     };
 
+    // sets the state back to normal mode and updates the genreID with actual genre ID.
     const onCancel = () => {
       setMode(false);
       updateGenreID(props.movie.GenreId);
     }
 
+    // If the component is in edit mode, then returns save, cancel buttons for edit of genre.
+    // If not then returns edit button.
     const EditSaveButton = () => {
       if (isInEditMode) {
         return (
@@ -63,6 +75,8 @@ export const MovieInfo: React.NamedExoticComponent<IMovieInfoProps> =
       );
     };
 
+    // returns a <p> element to show the genre name if the component is not in edit mode.
+    // returns a dropdown to select a genre if the component is in edit mode.
     const EditOrViewGenre = () => {
       if (isInEditMode) {
         const options: JSX.Element[] = Object.values(props.genres).map(

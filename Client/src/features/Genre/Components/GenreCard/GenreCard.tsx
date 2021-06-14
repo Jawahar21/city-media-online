@@ -3,6 +3,9 @@ import imageNotFound from "../../../../not-found-image.jpg";
 import "./genre-card.css";
 import { IGenreCardProps } from "./types/IGenreCardProps";
 
+/**
+ * Genre Card component to display a Genre in the UI
+ */
 export const GenreCard: React.NamedExoticComponent<IGenreCardProps> =
   React.memo((props: IGenreCardProps) => {
     return (

@@ -1,3 +1,3 @@
 export interface IDynamicObject<T> {
-    [id: string]: T
+  [id: string]: T;
 }

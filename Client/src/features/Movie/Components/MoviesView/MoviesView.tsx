@@ -6,20 +6,30 @@ import { MovieInfoContainer } from "../MovieInfo/MovieInfoContainer";
 import "./movies-view.css";
 import { IMoviesViewProps } from "./types/IMoviesViewProps";
 
+/**
+ * Component to show diplay the movies of selected genre
+ * On click of movie highlights it in the UI and also dipatches action to show movie info pop up screen in the middle of the page.
+ */
 export const MoviesView: React.NamedExoticComponent<IMoviesViewProps> =
   React.memo((props: IMoviesViewProps) => {
     const [movies, setMovies] = React.useState<IMovie[]>([]);
 
+    // filters the movies by genre and sorts then by rating
     React.useEffect(() => {
       setMovies(
         sortMoviesByRatingAndGenre(props.movies, props.selectedGenreID)
       );
     }, [props.movies, props.selectedGenreID]);
 
+    /**
+     * dispatches action to set the selected movie ID in store.
+     * @param selectedMovieID - selected movie ID 
+     */
     const handleOnClickMovieCard = (selectedMovieID: number) => {
       props.onSetSelectedMovieID(selectedMovieID);
     };
 
+    // resets the selection on close of movie
     const handleMovieInfoClose = () => {
       props.onSetSelectedMovieID(0);
     };

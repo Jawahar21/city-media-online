@@ -9,8 +9,15 @@ import { fetchMoviesStarted, fetchMoviesSucceeded } from "../actions";
 import * as helpers from "../httpRequestHelpers";
 import { getMovies } from "../selectors";
 
+/**
+ * This saga makes an API call fetch the movies of the selected genre.
+ * If uses the CacheService to check if the movies of that required genre are already fetched
+ * If fetched it simply ignores it.
+ * @param action the action with the payload with triggered the saga. Contains genreID
+ */
 export function* fetchMovies(action: ReturnType<typeof setSelectedGenre>) {
   try {
+    // These started and succeeded actions can be used to show and hide a loading spinner while making an API call.
     yield put(fetchMoviesStarted());
     if (!CacheService.CheckIfMoviesOfGenreAreFetched(action.payload)) {
       const genres: IDynamicObject<IGenre> = yield select(getGenres);
@@ -33,6 +40,7 @@ export function* fetchMovies(action: ReturnType<typeof setSelectedGenre>) {
       CacheService.AddGenreIDToFetchedList(action.payload);
     }
   } catch (error) {
+    // we can show a toaster message kind of indication upon failures here.
     console.log(error);
   }
 }

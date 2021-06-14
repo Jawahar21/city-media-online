@@ -1,6 +1,12 @@
 import { IDynamicObject } from "../../data/interfaces/IDynamicObject";
 import { IMovie } from "../../data/interfaces/IMovie";
 
+/**
+ * This method filters the movies by the required genreID, sorts them in decreasing order.
+ * @param moviesMap movies data object
+ * @param genreID genreID by which the movies have to be filtered
+ * @returns list of movies
+ */
 export function sortMoviesByRatingAndGenre(
   moviesMap: IDynamicObject<IMovie>,
   genreID: number

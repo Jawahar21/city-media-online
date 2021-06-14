@@ -4,6 +4,6 @@ import { fetchGenres } from "./fetchGenres";
 
 export function* saga() {
   yield all([
-      takeEvery(actions.FETCH_GENRES_STARTED, fetchGenres)
-    ]);
+    takeEvery(actions.FETCH_GENRES_STARTED, fetchGenres)
+  ]);
 }

@@ -5,8 +5,13 @@ import { MoviesViewContainer } from "../../Movie/Components/MoviesView/MoviesVie
 import "./layout.css";
 import { ILayoutProps } from "./types/ILayoutProps";
 
+/**
+ * This is the layout component which holds the genres view and movies view
+ * On load dispatches action to make an API call to fetch genres.
+ */
 export const Layout: React.NamedExoticComponent<ILayoutProps> = React.memo(
   (props: ILayoutProps) => {
+    
     const fetchData = useCallback(() => {
       props.onFetchGenres();
     }, [props]);

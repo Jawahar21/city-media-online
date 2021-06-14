@@ -3,6 +3,9 @@ import imageNotFound from "../../../../not-found-image.jpg";
 import "./movie-card.css";
 import { IMovieCardProps } from "./types/IMovieCardProps";
 
+/**
+ * Movie Card component to display a Movie in the UI
+ */
 export const MovieCard: React.NamedExoticComponent<IMovieCardProps> =
   React.memo((props: IMovieCardProps) => {
     return (
