@@ -26,3 +26,13 @@
   align-items: center;
   border-bottom: 1px solid;
 }
+
+.movie-info-genre-text {
+  display: inline-block;
+}
+
+.movie-info-edit-button {
+  height: 2rem;
+  padding: 0rem 0.5rem;
+  margin: 0rem 1rem;
+}

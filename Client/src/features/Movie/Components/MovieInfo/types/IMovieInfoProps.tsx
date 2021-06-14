@@ -1,6 +1,8 @@
-import { IMovie } from "../../../../../data/interfaces/IMovie";
+import { IMovieInfoDataProps } from "./IMovieInfoDataProps";
+import { IMovieInfoDispatchProps } from "./IMovieInfoDispatchProps";
+import { IMovieInfoOwnProps } from "./IMovieInfoOwnProps";
 
-export interface IMovieInfoProps {
-  movie: IMovie;
-  onClose: () => void;
-}
+export interface IMovieInfoProps
+  extends IMovieInfoDataProps,
+    IMovieInfoDispatchProps,
+    IMovieInfoOwnProps {}

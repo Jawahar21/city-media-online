@@ -2,7 +2,7 @@ import * as React from "react";
 import { IMovie } from "../../../../data/interfaces/IMovie";
 import { sortMoviesByRatingAndGenre } from "../../helpers";
 import { MovieCard } from "../MovieCard/MovieCard";
-import { MovieInfo } from "../MovieInfo/MovieInfo";
+import { MovieInfoContainer } from "../MovieInfo/MovieInfoContainer";
 import "./movies-view.css";
 import { IMoviesViewProps } from "./types/IMoviesViewProps";
 
@@ -38,8 +38,8 @@ export const MoviesView: React.NamedExoticComponent<IMoviesViewProps> =
     return (
       <>
         <div className="movies-view">{movieCards}</div>
-        {props.selectedMovieID && (
-          <MovieInfo
+        {props.selectedMovieID !== 0 && (
+          <MovieInfoContainer
             movie={props.movies[props.selectedMovieID]}
             onClose={handleMovieInfoClose}
           />
